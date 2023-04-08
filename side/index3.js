@@ -1,3 +1,4 @@
+const pickerBox = document.querySelector('.picker-box');
 let number = Math.floor(Math.random() * 5 + 1);
 
 const changeSlide = () => {
@@ -14,3 +15,9 @@ const changeSlide = () => {
 };
 
 changeSlide();
+
+pickerBox.addEventListener('click', (e) => {
+	let number = e.target.textContent;
+	let file = `<img src="images/pic${number}.jpg" class="slide" />`;
+	document.querySelector('.slide-box').innerHTML = file;
+});
