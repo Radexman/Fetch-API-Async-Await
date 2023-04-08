@@ -18,9 +18,9 @@ const checkNumber = (num) => {
 	let msg;
 
 	if (num > 0) {
-		msg = 'Number is positive';
+		msg = 'Number is bigger than 0';
 	} else if (num < 0) {
-		msg = 'Number is negative';
+		msg = 'Number is less than 0';
 	} else if (num === 0) {
 		msg = 'Number is 0';
 	} else {
