@@ -20,8 +20,10 @@ const showNumberRange = (e) => {
 		let x = Number(firstNumber);
 		let y = Number(lastNumber);
 
-		for (x; x <= y; x++) {
+		let i = x;
+		while (x <= y) {
 			arr.push(x);
+			x++;
 		}
 
 		div.innerHTML = '';
