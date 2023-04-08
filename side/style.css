@@ -16,10 +16,18 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
-#form {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    justify-content: center;
-    gap: 1.2em;
+.box-slider {
+    width: 400px;
+}
+
+.slide {
+    transition: .3s ease-in; 
+}
+
+.hidden {
+    display: none;
+}
+
+.display {
+    display: block;
 }
