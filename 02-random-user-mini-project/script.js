@@ -9,15 +9,34 @@ const displayUser = () => {
 };
 
 const generateUserData = (user) => {
+	// Create wrapper
 	const outerDiv = document.createElement('div');
 	outerDiv.classList = 'flex';
 
+	// Create user avatar
 	const img = document.createElement('img');
 	img.classList = 'w-48 h-48 rounded-full mr-8';
 	img.src = user.picture.large;
 
+	// Inner wrapper
+	const innerDiv = document.createElement('div');
+	innerDiv.classList = 'space-y-3';
+
+	const p = createParagraph('text-xl');
+	p.textContent = 'Hello';
+	console.log(p);
+
+	// Appending elements
 	outerDiv.appendChild(img);
+	outerDiv.appendChild(innerDiv);
+	innerDiv.appendChild(p);
 	wrapper.appendChild(outerDiv);
+};
+
+const createParagraph = (classes) => {
+	const p = document.createElement('p');
+	p.classList = classes;
+	return p;
 };
 
 generateUserButton.addEventListener('click', displayUser);
