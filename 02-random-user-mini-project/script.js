@@ -1,46 +1,44 @@
-const fetchUser = () => {
-	showSpinner();
+const generateUserButton = document.querySelector('#generate');
+const wrapper = document.querySelector('.wrapper');
+
+const displayUser = () => {
+	wrapper.innerHTML = '';
 	fetch('https://randomuser.me/api/')
 		.then((res) => res.json())
-		.then((data) => {
-			hideSpinner();
-			displayUser(data.results[0]);
-		});
+		.then((data) => generateUserData(data.results[0]));
 };
 
-const displayUser = (user) => {
-	const userDisplay = document.querySelector('#user');
+const generateUserData = (user) => {
+	const outerDiv = document.createElement('div');
+	outerDiv.classList = 'flex';
 
-	if (user.gender === 'female') {
-		document.body.style.backgroundColor = 'rebeccapurple';
-	} else {
-		document.body.style.backgroundColor = 'steelblue';
-	}
+	const img = document.createElement('img');
+	img.classList = 'w-48 h-48 rounded-full mr-8';
+	img.src = user.picture.large;
 
-	userDisplay.innerHTML = `
-    <div class="flex justify-between">
-					<div class="flex">
-						<img class="w-48 h-48 rounded-full mr-8" src="${user.picture.large}" />
-						<div class="space-y-3">
-							<p class="text-xl"><span class="font-bold">Name: </span>${user.name.first} ${user.name.last}</p>
-							<p class="text-xl"><span class="font-bold">Email: </span> ${user.email}</p>
-							<p class="text-xl"><span class="font-bold">Phone: </span> ${user.phone}</p>
-							<p class="text-xl"><span class="font-bold">Location: </span> ${user.location.city}, ${user.location.state}</p>
-							<p class="text-xl"><span class="font-bold">Age: </span> ${user.registered.age}</p>
-						</div>
-					</div>
-				</div>
-    `;
+	outerDiv.appendChild(img);
+	wrapper.appendChild(outerDiv);
 };
 
-const showSpinner = () => {
-	document.querySelector('.spinner').style.display = 'block';
-};
+generateUserButton.addEventListener('click', displayUser);
 
-const hideSpinner = () => {
-	document.querySelector('.spinner').style.display = 'none';
-};
-
-fetchUser();
-
-document.querySelector('#generate').addEventListener('click', fetchUser);
+/* <div class="flex">
+	<img class="w-48 h-48 rounded-full mr-8" src="./user-picture.jpg" />
+	<div class="space-y-3">
+		<p class="text-xl">
+			<span class="font-bold">Name: </span>Radosław Siek
+		</p>
+		<p class="text-xl">
+			<span class="font-bold">Email: </span>Borderlandsmaniak@gmail.com
+		</p>
+		<p class="text-xl">
+			<span class="font-bold">Phone: </span>666 666 666
+		</p>
+		<p class="text-xl">
+			<span class="font-bold">Location: </span>Koszęcin, Polska
+		</p>
+		<p class="text-xl">
+			<span class="font-bold">Age: </span>24
+		</p>
+	</div>
+</div>; */
