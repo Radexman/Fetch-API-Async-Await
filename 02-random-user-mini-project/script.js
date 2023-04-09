@@ -22,14 +22,13 @@ const generateUserData = (user) => {
 	const innerDiv = document.createElement('div');
 	innerDiv.classList = 'space-y-3';
 
-	const p = createParagraph('text-xl');
-	p.textContent = 'Hello';
-	console.log(p);
+	const pName = createParagraph('text-xl');
+	pName.innerHTML = `<span class='font-bold'> Name: </span> ${user.name.first} ${user.name.last}`;
 
 	// Appending elements
 	outerDiv.appendChild(img);
 	outerDiv.appendChild(innerDiv);
-	innerDiv.appendChild(p);
+	innerDiv.appendChild(pName);
 	wrapper.appendChild(outerDiv);
 };
 
