@@ -22,13 +22,34 @@ const generateUserData = (user) => {
 	const innerDiv = document.createElement('div');
 	innerDiv.classList = 'space-y-3';
 
+	// User name
 	const pName = createParagraph('text-xl');
 	pName.innerHTML = `<span class='font-bold'> Name: </span> ${user.name.first} ${user.name.last}`;
+
+	// User email
+	const pEmail = createParagraph('text-xl');
+	pEmail.innerHTML = `<span class='font-bold'> Email: </span> ${user.email}`;
+
+	// User phone
+	const pPhone = createParagraph('text-xl');
+	pPhone.innerHTML = `<span class='font-bold'> Phone: </span> ${user.phone}`;
+
+	// User location
+	const pLocation = createParagraph('text-xl');
+	pLocation.innerHTML = `<span class='font-bold'> Location: </span> ${user.location.city}, ${user.location.state}, ${user.location.country}`;
+
+	// User age
+	const pAge = createParagraph('text-xl');
+	pAge.innerHTML = `<span class='font-bold'> Age: </span> ${user.registered.age + 20}`;
 
 	// Appending elements
 	outerDiv.appendChild(img);
 	outerDiv.appendChild(innerDiv);
 	innerDiv.appendChild(pName);
+	innerDiv.appendChild(pEmail);
+	innerDiv.appendChild(pPhone);
+	innerDiv.appendChild(pLocation);
+	innerDiv.appendChild(pAge);
 	wrapper.appendChild(outerDiv);
 };
 
@@ -39,24 +60,3 @@ const createParagraph = (classes) => {
 };
 
 generateUserButton.addEventListener('click', displayUser);
-
-/* <div class="flex">
-	<img class="w-48 h-48 rounded-full mr-8" src="./user-picture.jpg" />
-	<div class="space-y-3">
-		<p class="text-xl">
-			<span class="font-bold">Name: </span>Radosław Siek
-		</p>
-		<p class="text-xl">
-			<span class="font-bold">Email: </span>Borderlandsmaniak@gmail.com
-		</p>
-		<p class="text-xl">
-			<span class="font-bold">Phone: </span>666 666 666
-		</p>
-		<p class="text-xl">
-			<span class="font-bold">Location: </span>Koszęcin, Polska
-		</p>
-		<p class="text-xl">
-			<span class="font-bold">Age: </span>24
-		</p>
-	</div>
-</div>; */
