@@ -13,13 +13,16 @@ fetch('text.txt')
 // Fetching from an API
 fetch('https://api.github.com/users/Radexman')
 	.then((res) => res.json())
-	.then((data) => (document.querySelector('h1').textContent = data.login));
-
-// Fetching img
-fetch('avatar.png')
-	.then((res) => res.blob())
-	.then((img) => {
-		const image = document.createElement('img');
-		image.src = URL.createObjectURL(img);
-		document.body.appendChild(image);
+	.then((data) => {
+		console.log(data);
+		document.querySelector('h1').textContent = data.login;
+		const avatar = document.createElement('img');
+		avatar.src = data.avatar_url;
+		avatar.style.borderRadius = '50%';
+		document.body.appendChild(avatar);
+		const anchor = document.createElement('a');
+		anchor.href = data.blog;
+		const anchorText = document.createTextNode('Visit my blog');
+		anchor.appendChild(anchorText);
+		document.body.appendChild(anchor);
 	});
