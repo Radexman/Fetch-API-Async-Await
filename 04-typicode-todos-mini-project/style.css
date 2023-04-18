@@ -25,6 +25,7 @@ button {
     border-radius: 5px;
     width: 100px;
     border: none;
+    cursor: pointer;
 }
 
 input[type='text'] {
