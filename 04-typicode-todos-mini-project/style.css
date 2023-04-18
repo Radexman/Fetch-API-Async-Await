@@ -25,6 +25,7 @@ button {
     border-radius: 5px;
     width: 100px;
     border: none;
+    cursor: pointer;
 }
 
 input[type='text'] {
@@ -50,5 +51,5 @@ input[type='text'] {
 }
 
 .done {
-    background: #ccc;
+    background: #76e436;
 }
