@@ -25,6 +25,7 @@
 // 	.then(() => console.log('Success'))
 // 	.catch((error) => console.log(error));
 
+// Check for specific code
 fetch('http://httpstat.us/200')
 	.then((res) => {
 		if (res.status === 404) {
