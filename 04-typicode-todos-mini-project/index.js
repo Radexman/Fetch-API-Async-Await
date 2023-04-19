@@ -1,11 +1,12 @@
 const apiUrl = 'https://jsonplaceholder.typicode.com/todos';
 
 const getTodos = () => {
-	fetch(apiUrl + '?_limit=8')
+	fetch(apiUrl + '?_limit=10')
 		.then((res) => res.json())
 		.then((data) => {
 			data.forEach((task) => {
 				const div = document.createElement('div');
+				div.classList.add('todo');
 				div.appendChild(document.createTextNode(task.title));
 				div.setAttribute('data-id', task.id);
 
@@ -46,14 +47,26 @@ const postTodo = (e) => {
 
 const renderTodoToDOM = (task) => {
 	const div = document.createElement('div');
+	div.classList.add('todo');
 	div.appendChild(document.createTextNode(task.title));
 	div.setAttribute('data-id', task.id);
 	document.querySelector('#todo-list').appendChild(div);
 };
 
+const toggleCompleted = (e) => {
+	if (e.target.classList.contains('todo')) {
+		e.target.classList.toggle('done');
+
+		updateTodo(e.target.dataset.id);
+	}
+};
+
+const updateTodo = (id, completed) => {};
+
 const appInit = () => {
 	window.addEventListener('DOMContentLoaded', getTodos);
 	document.querySelector('#todo-form').addEventListener('submit', postTodo);
+	document.querySelector('#todo-list').addEventListener('click', toggleCompleted);
 };
 
 appInit();
