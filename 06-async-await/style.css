@@ -1,0 +1,20 @@
+body {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+button {
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    font: inherit;
+    padding: 5px 15px;
+}
+
+.user {
+    background-color: #838383;
+    color: #ffffff;
+    padding: 5px 10px;
+    margin: 30px 20px;
+    border-radius: 2px;
+    font-size: 1.1rem;
+}

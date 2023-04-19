@@ -2,44 +2,53 @@
 
 const promise = new Promise((resolve, reject) => {
 	setTimeout(() => {
-		resolve({ name: 'John', age: 20 });
+		let error = false;
+
+		if (!error) {
+			resolve('Success');
+		} else {
+			reject('Failure');
+		}
 	}, 1000);
 });
 
-// promise.then((data) => console.log(data));
+// promise.then((data) => console.log(data)).catch((error) => console.log(error));
 
 async function getPromise() {
 	const res = await promise;
+
 	console.log(res);
 }
 
 // getPromise();
 
-// Fetch API with async/await
-const getUsers = async () => {
+async function getUsers() {
 	const res = await fetch('https://jsonplaceholder.typicode.com/users');
 	const data = await res.json();
 
 	console.log(data);
-};
+}
 
 // getUsers();
 
-// Fetch API with thanables
+const getUsersTwo = async () => {
+	const res = await fetch('https://jsonplaceholder.typicode.com/users?_limit=5');
+	const users = await res.json();
 
-const getUsersTwo = () => {
-	fetch('https://jsonplaceholder.typicode.com/users')
-		.then((res) => res.json())
-		.then((data) => console.log(data));
+	renderUsersToDOM(users);
 };
 
-// getUsersTwo();
-
-const getPosts = async () => {
-	const res = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=5');
-	const data = await res.json();
-
-	console.log(data);
+const renderUsersToDOM = (users) => {
+	users.forEach((user) => {
+		const div = document.createElement('div');
+		div.classList.add('user');
+		div.appendChild(document.createTextNode(user.name));
+		document.querySelector('#output').appendChild(div);
+	});
 };
 
-getPosts();
+const initApp = () => {
+	document.querySelector('button').addEventListener('click', getUsersTwo);
+};
+
+initApp();
