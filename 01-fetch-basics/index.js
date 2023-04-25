@@ -22,10 +22,12 @@ const getUser = async () => {
 };
 
 const displayUser = (user) => {
+	// Create user profile picture
 	const img = document.createElement('img');
 	img.setAttribute('src', `${user.picture.medium}`);
 	document.body.appendChild(img);
 
+	// Create user full name
 	const h2 = document.createElement('h2');
 	h2.appendChild(document.createTextNode(`${user.name.first} ${user.name.last}`));
 	document.body.appendChild(h2);
