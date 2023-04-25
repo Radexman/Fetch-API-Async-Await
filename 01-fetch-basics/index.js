@@ -1,28 +1,44 @@
 // =================== 01 Fetch Basics ==================== //
 
-// Fetching a JSON file
-fetch('movies.json')
-	.then((res) => res.json())
-	.then((data) => console.log(data));
+const getData = async () => {
+	const res = await fetch('movies.json');
+	const data = await res.json();
 
-// Fetching text file
-fetch('text.txt')
-	.then((res) => res.text())
-	.then((data) => console.log(data));
+	logData(data);
+};
 
-// Fetching from an API
-fetch('https://api.github.com/users/Radexman')
-	.then((res) => res.json())
-	.then((data) => {
-		console.log(data);
-		document.querySelector('h1').textContent = data.login;
-		const avatar = document.createElement('img');
-		avatar.src = data.avatar_url;
-		avatar.style.borderRadius = '50%';
-		document.body.appendChild(avatar);
-		const anchor = document.createElement('a');
-		anchor.href = data.blog;
-		const anchorText = document.createTextNode('Visit my blog');
-		anchor.appendChild(anchorText);
-		document.body.appendChild(anchor);
+const getText = () => {
+	fetch('text.txt')
+		.then((res) => res.text())
+		.then((data) => console.log(data));
+};
+
+const getUser = async () => {
+	const res = await fetch('https://randomuser.me/api/');
+	const data = await res.json();
+
+	// console.log(data.results[0]);
+	displayUser(data.results[0]);
+};
+
+const displayUser = (user) => {
+	const img = document.createElement('img');
+	img.setAttribute('src', `${user.picture.medium}`);
+	document.body.appendChild(img);
+
+	const h2 = document.createElement('h2');
+	h2.appendChild(document.createTextNode(`${user.name.first} ${user.name.last}`));
+	document.body.appendChild(h2);
+};
+
+const logData = (data) => {
+	data.forEach((obj) => {
+		console.log(`Movie title: ${obj.title}, year: ${obj.year}.`);
 	});
+};
+
+getData();
+
+getText();
+
+getUser();
