@@ -17,7 +17,6 @@ const getUser = async () => {
 	const res = await fetch('https://randomuser.me/api/');
 	const data = await res.json();
 
-	// console.log(data.results[0]);
 	displayUser(data.results[0]);
 };
 

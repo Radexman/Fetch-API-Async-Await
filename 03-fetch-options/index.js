@@ -1,7 +1,9 @@
 // ==================== 03 Fetch Options =================== //
 
-const createPost = ({ title, body }) => {
-	fetch('https://jsonplaceholder.typicode.com/posts', {
+const url = 'https://jsonplaceholder.typicode.com/posts';
+
+const createPost = async (url, { title, body }) => {
+	const res = await fetch(url, {
 		method: 'POST',
 		body: JSON.stringify({
 			title,
@@ -9,11 +11,20 @@ const createPost = ({ title, body }) => {
 		}),
 		headers: {
 			'Content-Type': 'application/json',
-			token: 'abc123',
 		},
-	})
-		.then((res) => res.json())
-		.then((data) => console.log(data));
+	});
+
+	const data = await res.json();
+
+	renderPost(data);
 };
 
-createPost({ title: 'Post One', body: 'Post One Body' });
+const renderPost = (post) => {
+	const div = document.createElement('div');
+	div.innerHTML = `<h1>${post.title}</h1>
+	<p>${post.body}</p>`;
+
+	document.body.appendChild(div);
+};
+
+createPost(url, { title: 'Post One', body: 'Post Two Body' });
