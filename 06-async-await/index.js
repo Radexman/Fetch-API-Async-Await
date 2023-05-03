@@ -1,4 +1,8 @@
 // ===================== 06 Async Await ==================== //
+
+const form = document.querySelector('.form');
+const personInput = document.querySelector('.person');
+
 const promise = new Promise((resolve, reject) => {
 	setTimeout(() => {
 		resolve({ name: 'John', age: 20 });
@@ -31,4 +35,50 @@ const renderUsers = (users) => {
 	});
 };
 
-document.querySelector('button').addEventListener('click', getUsers);
+const checkForm = async (e) => {
+	e.preventDefault();
+	const nameValue = personInput.value;
+
+	// Check for empty value
+	if (!nameValue) {
+		alert('Please provide value');
+		return;
+	}
+
+	const formData = new FormData(e.currentTarget);
+
+	const entries = [...formData.values()];
+
+	const user = {
+		name: entries[0],
+	};
+
+	const res = await fetch('https://jsonplaceholder.typicode.com/users', {
+		method: 'POST',
+		body: JSON.stringify(user),
+		headers: {
+			'Content-Type': 'application/json',
+		},
+	});
+
+	const data = await res.json();
+
+	renderSingleUser(data);
+
+	personInput.value = '';
+};
+
+const renderSingleUser = (user) => {
+	const div = document.createElement('div');
+	div.appendChild(document.createTextNode(user.name));
+	div.classList.add('user');
+
+	document.querySelector('#output').appendChild(div);
+};
+
+const initApp = () => {
+	document.querySelector('.render-users').addEventListener('click', getUsers);
+	form.addEventListener('submit', checkForm);
+};
+
+initApp();
