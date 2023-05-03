@@ -57,15 +57,28 @@ const updateTodo = async (id, completed) => {
 			'Content-Type': 'application/json',
 		},
 	});
-	const data = await res.json();
+};
 
-	console.log(data);
+const deleteTodo = (e) => {
+	if (e.target.classList.contains('todo')) {
+		const id = e.target.dataset.id;
+
+		e.target.remove();
+		removeTodo(id);
+	}
+};
+
+const removeTodo = async (id) => {
+	const res = await fetch(`${apiURL}/${id}`, {
+		method: 'DELETE',
+	});
 };
 
 const appInit = () => {
 	document.addEventListener('DOMContentLoaded', getTodos(apiURL));
 	document.querySelector('#todo-form').addEventListener('submit', createTodo);
 	document.querySelector('#todo-list').addEventListener('click', toggleCompleted);
+	document.querySelector('#todo-list').addEventListener('dblclick', deleteTodo);
 };
 
 appInit();
