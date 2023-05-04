@@ -2,8 +2,13 @@
 
 const getUsers = async () => {
 	try {
-		// const res = await fetch('https://jsonplaceholder.typicode.com/users?_limit=5');
-		const data = await res.json();
+		const res = await fetch('http://httpstat.us/404');
+
+		if (!res.ok) {
+			throw new Error('Request Failed');
+		}
+
+		const data = await res.text();
 
 		console.log(data);
 	} catch (error) {
@@ -11,4 +16,18 @@ const getUsers = async () => {
 	}
 };
 
-getUsers();
+// getUsers();
+
+const getPosts = async () => {
+	const res = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=5');
+
+	if (!res.ok) {
+		throw new Error('Something went wrong.');
+	}
+
+	const data = await res.json();
+
+	console.log(data);
+};
+
+getPosts();
