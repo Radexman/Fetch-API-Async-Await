@@ -10,14 +10,18 @@
 	<body>
 		<h1>Async Await</h1>
 		<form class="form">
-			<label for="person">Add person:</label>
-			<input type="text" name="person" class="person" />
+			<div class="form-control">
+				<label for="name">Name:</label>
+				<input type="text" name="name" class="name" />
+			</div>
+			<div class="form-control">
+				<label for="username">Username:</label>
+				<input type="text" name="username" class="username" />
+			</div>
 			<button type="submit">Add person</button>
 		</form>
 		<button class="render-users">Render Users</button>
-		<div id="output">
-			<div class="user">Emilia Kożuch</div>
-		</div>
+		<div id="output"></div>
 		<script src="index.js"></script>
 	</body>
 </html>
